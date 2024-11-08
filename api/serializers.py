@@ -5,7 +5,7 @@ import magic
 class UploadSerializer(serializers.ModelSerializer):
     class Meta:
         model = Upload
-        fields = ['id', 'file', 'uploaded_timestamp', 'user']
+        fields = ['id', 'file', 'uploaded_at', 'user']
 
     def validate_file(self, value):
 

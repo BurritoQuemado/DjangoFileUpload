@@ -7,7 +7,7 @@ def user_directory_path(instance, filename):
 
 class Upload(models.Model):
     file = models.FileField(upload_to=user_directory_path)
-    uploaded_timestamp = models.DateTimeField(auto_now_add=True)
+    uploaded_at = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
