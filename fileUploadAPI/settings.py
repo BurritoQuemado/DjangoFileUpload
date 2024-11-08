@@ -128,11 +128,10 @@ DATABASES = {
 CACHES = {
     'default': {
         'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': 'redis://cache-primary:6379/0',
+        'LOCATION': os.getenv('REDIS_LOCATION'),
         'OPTIONS': {
             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
-            'SOCKET_CONNECT_TIMEOUT': 5,
-            'SOCKET_TIMEOUT': 5,
+            'IGNORE_EXCEPTIONS': True,
         },
     }
 }
