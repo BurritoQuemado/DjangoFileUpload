@@ -9,10 +9,16 @@ class UploadSerializer(serializers.ModelSerializer):
 
     def validate_file(self, value):
 
-        # Limit file size to 7 GB
-        max_size = 7168 * 1024 * 1024  # 7 GB
+        # Limit file size to 10 GB
+        max_size = 10240 * 1024 * 1024  # 10 GB
+        # Min file size to 1 GB
+        min_size = 1024 * 1024 * 1024 # 1 GB
+
         if value.size > max_size:
             raise serializers.ValidationError("File size too large. Max size is 7 GB.")
+        
+        if value.size < min_size:
+            raise serializers.ValidationError("File size too small. Min size is 1 GB.")
         
         # Validate allowed file types
         mime_type = magic.from_buffer(value.read(), mime=True)
